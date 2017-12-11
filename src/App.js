@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { createStore, applyMiddleware } from 'redux'
-import { combineReducers } from 'redux';
+//import { createStore, applyMiddleware } from 'redux'
+//import { combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import './App.css';
 import Header from './components/header/Header';
@@ -10,10 +10,19 @@ import Login from './components/content/Login';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import initStore from './ducks/store'
+import rootSaga from './ducks/index'
+
+export const store = initStore();
+
+store.runSaga(rootSaga);
+
+//store.dispatch({type: 'CONTENT/FETCH'});
+
+//store.dispatch({type: 'TO_STORE', data: {eq: 2}});
+/*
 import createSagaMiddleware, { delay } from 'redux-saga'
 import { put, takeEvery } from 'redux-saga/effects'
-
-//import { helloSaga } from './sagas'
 
 const ADD = (id) => ({
     type: 'ADD',
@@ -57,20 +66,17 @@ const rootReducer = combineReducers({
 });
 
 const sagaMiddleware = createSagaMiddleware();
-/*
+
 const store = createStore(
     reducer,
     applyMiddleware(sagaMiddleware)
-)*/
+)
 
 
 function* couterSaga() {
     yield delay(10000);
     yield put({type: 'INCREMENT'});
 };
-function* watchIncrementAsync() {
-    yield takeEvery('INCREMENT_ASYNC', couterSaga)
-}
 
 
 export const store = createStore(
@@ -79,18 +85,12 @@ export const store = createStore(
     applyMiddleware(sagaMiddleware)
 );
 sagaMiddleware.run(couterSaga);
-
-const action = type => store.dispatch({type})
-action('INCREMENT');
-action('INCREMENT');
-action('INCREMENT');
-action('INCREMENT');
-action('INCREMENT');
+*/
 class App extends Component {
   render() {
       return (
       <div className="App">
-            <Provider store={ store }>
+            <Provider store = { store }>
                 <Router>
                 <div>
                   <Header />

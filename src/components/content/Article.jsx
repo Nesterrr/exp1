@@ -1,7 +1,8 @@
 import React from 'react';
 
 function Article(props) {
-     let src,
+
+    let src,
      text = props.byline,
         title = props.display_title;
     if(props.multimedia) {
