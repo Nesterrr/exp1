@@ -10,8 +10,16 @@ export const load = (state = {}, action) => {
 export const toStore = (state = {content: {}}, action) => {
     switch(action.type) {
         case 'TO_STORE':
-            //console.log(action.data.results);
-            return Object.assign({}, state, action.data.results);
+            return action.data.results;
+        default:
+            return state;
+    }
+}
+
+export const filter = (state = { name: 'ALL'}, action) => {
+    switch(action.type) {
+        case 'FILTERSTATE/NAME':
+            return action.name;
         default:
             return state;
     }

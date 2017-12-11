@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 function Article(props) {
 
@@ -17,6 +18,12 @@ function Article(props) {
             <p>{ text }</p>
         </article>
     );
+}
+
+Article.PropTypes = {
+    title: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 }
 
 export default Article;

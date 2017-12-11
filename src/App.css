@@ -51,3 +51,8 @@
 .main-footer p {
     padding-left: 2%;
 }
+
+.selected {
+    border-bottom: 1px solid black;
+}
+

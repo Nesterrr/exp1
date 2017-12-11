@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { load, toStore } from './reducers';
+import { load, toStore, filter } from './reducers';
 
 const rootReducer = combineReducers({
     load,
-    toStore
+    toStore,
+    filter
 });
 
 export default rootReducer;
