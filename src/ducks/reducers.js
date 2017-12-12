@@ -1,16 +1,17 @@
 export const load = (state = {}, action) => {
     switch(action.type) {
         case 'LOAD_DATA':
-            return state;
+            return  state;
         default:
             return state;
     }
 }
 
-export const toStore = (state = {content: {}}, action) => {
+export const toStore = (state = {}, action) => {
     switch(action.type) {
         case 'TO_STORE':
-            return action.data.results;
+            console.log(action.data.results);
+            return Object.assign({}, state, action.data.results);
         default:
             return state;
     }
@@ -20,6 +21,15 @@ export const filter = (state = { name: 'ALL'}, action) => {
     switch(action.type) {
         case 'FILTERSTATE/NAME':
             return action.name;
+        default:
+            return state;
+    }
+}
+
+export const next = (state = { offset: 0}, action) => {
+    switch(action.type) {
+        case 'CONTENT/NEXT':
+            return action.offset += 20;
         default:
             return state;
     }

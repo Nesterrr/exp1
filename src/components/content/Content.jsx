@@ -2,12 +2,13 @@ import React from 'react';
 import Article from './Article';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-
+let offset = 0;
 class Content extends React.Component {
     constructor() {
         super();
 
         this.filter = this.filter.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentWillMount() {
@@ -16,29 +17,32 @@ class Content extends React.Component {
 
     filter(match) {
         this.data = Object.values(this.props.myState);
-        console.log(match.params.filter);
-       // return this.data;
 
-        switch(match.params.filter) {
-            case '':
-                return this.data;
+        switch(match.url) {
+            case '/content/filters/month':
+                return this.data.filter((item) => {
+                    return item.byline;
+                });
 
-            case '/filters/auth':
-                return this.data.filter(item => item.byline === this.props.filterState);
+            case '/content/filters/' + match.params.filter:
+                return this.data.filter((item) => {
+                    return item.byline === match.params.filter;
+                });
 
-            case '/filters/month':
+            case '/content/':
                 return this.data;
 
             default:
                 return this.data;
         }
-
-        //this.res = this.data.filter(item => hash.params.filter === filter);
     }
-
+    handleClick() {
+        offset = offset + 20;
+        this.props.actionNext(offset);
+    }
     render() {
         return (
-            <section className="mdc-card">
+            <section className="mdc-card" onClick={ this.handleClick }>
                 { this.filter(this.props.match).map((item, key) => <Article key={key} {...item}/>) }
             </section>
         );
@@ -56,4 +60,7 @@ function mapStateToProps (state) {
 const action = () => {
     return { type: 'CONTENT/FETCH' }
 }
-export default connect(mapStateToProps, { action })(Content);
+const actionNext = () => {
+    return { type: 'CONTENT/NEXT', offset: offset }
+}
+export default connect(mapStateToProps, { action, actionNext })(Content);

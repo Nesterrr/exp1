@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-
+import { Route } from 'react-router-dom'
 import header from './header.css'
 
 import Filters from './Filters'
+
 import ToolbarLink  from './ToolbarLink'
 
 class Header extends Component {
@@ -11,11 +12,14 @@ class Header extends Component {
             <header className='main-header'>
                 <h1 className="mdc-typography--display2">NYT</h1>
                 <nav>
-                    <ToolbarLink to="/">main</ToolbarLink>
+                    <ToolbarLink exact to="/">main</ToolbarLink>
+                    <ToolbarLink to="/content">content</ToolbarLink>
                     <ToolbarLink to="/login">login</ToolbarLink>
                     <ToolbarLink to="/fave">fave</ToolbarLink>
                 </nav>
-                <Filters/>
+                <Route path="/content" component={ Filters }/>
+
+
             </header>
         );
     };

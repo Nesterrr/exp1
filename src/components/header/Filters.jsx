@@ -18,11 +18,11 @@ class Filters extends Component {
         return (
             <section className = "filters">
                 <label>
-                    <NavLink to={"/filters/" + this.props.authName}>auth name</NavLink>
+                    <NavLink to={"/content/filters/" + this.props.authName}>auth name</NavLink>
                     <input type="text"  onInput={ this.handleChange } required/>
                 </label>
-                <NavLink to="/">all</NavLink>
-                <NavLink to="/filters/month">month</NavLink>
+                <NavLink to="/content">all</NavLink>
+                <NavLink to="/content/filters/month">month</NavLink>
             </section>
         );
     }
