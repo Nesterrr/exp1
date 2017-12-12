@@ -10,8 +10,12 @@ export const load = (state = {}, action) => {
 export const toStore = (state = {}, action) => {
     switch(action.type) {
         case 'TO_STORE':
-            console.log(action.data.results);
-            return Object.assign({}, state, action.data.results);
+            let prevStateArr = [];
+
+            for(let i in state) {
+                prevStateArr.push(state[i]);
+            }
+            return prevStateArr.concat(action.data.results);
         default:
             return state;
     }
@@ -29,7 +33,7 @@ export const filter = (state = { name: 'ALL'}, action) => {
 export const next = (state = { offset: 0}, action) => {
     switch(action.type) {
         case 'CONTENT/NEXT':
-            return action.offset += 20;
+            return action.offset;
         default:
             return state;
     }

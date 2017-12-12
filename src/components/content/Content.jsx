@@ -2,7 +2,9 @@ import React from 'react';
 import Article from './Article';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
 let offset = 0;
+
 class Content extends React.Component {
     constructor() {
         super();
@@ -42,8 +44,9 @@ class Content extends React.Component {
     }
     render() {
         return (
-            <section className="mdc-card" onClick={ this.handleClick }>
+            <section className="mdc-card">
                 { this.filter(this.props.match).map((item, key) => <Article key={key} {...item}/>) }
+                <button type="button" onClick={ this.handleClick }>Next</button>
             </section>
         );
     };
@@ -63,4 +66,5 @@ const action = () => {
 const actionNext = () => {
     return { type: 'CONTENT/NEXT', offset: offset }
 }
+
 export default connect(mapStateToProps, { action, actionNext })(Content);
