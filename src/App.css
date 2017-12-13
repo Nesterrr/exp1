@@ -178,3 +178,15 @@
     text-align: center;
     margin-bottom: 20px;
 }
+.mdc-card__title--large {
+    margin: 5px 0;
+    display: block;
+    overflow: hidden;
+}
+
+.open-href {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+}

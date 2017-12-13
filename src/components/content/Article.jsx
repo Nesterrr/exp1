@@ -12,7 +12,7 @@ function Article({ byline, multimedia, display_title, id }) {
             <h2 className="mdc-card__title mdc-card__title--large">{ display_title }</h2>
             <img src={ src } alt="here is stuff"/>
             <p>{ byline }</p>
-            <Link to={ "/content/" + id } onClick={ handleClick }>Open</Link>
+            <Link to={ "/content/" + id } onClick={ handleClick } className="open-href">Open</Link>
         </article>
     );
 
