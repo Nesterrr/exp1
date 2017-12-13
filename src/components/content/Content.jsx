@@ -49,9 +49,9 @@ class Content extends React.Component {
     }
     render() {
         return (
-            <section className="mdc-card">
+            <section className="main-content">
                 { this.filter(this.props.match).map((item, key) => <Article key={ key } id={ key } {...item}/>) }
-                <button type="button" onClick={ this.handleClick }>Next</button>
+                <button type="button" onClick={ this.handleClick } className="main-content-btn">Next</button>
             </section>
         );
     };
