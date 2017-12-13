@@ -10,7 +10,7 @@ function Article({ byline, multimedia, display_title, id }) {
     return (
         <article className="mdc-card__primary">
             <h2 className="mdc-card__title mdc-card__title--large">{ display_title }</h2>
-            <img src={ src } alt="here is stuff"/>
+            <img src={ src } width="210" height="140" alt="here is stuff"/>
             <p>{ byline }</p>
             <Link to={ "/content/" + id } onClick={ handleClick } className="open-href">Open</Link>
         </article>
