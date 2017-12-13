@@ -14,12 +14,9 @@ class Header extends Component {
                 <nav>
                     <ToolbarLink exact to="/">main</ToolbarLink>
                     <ToolbarLink to="/content">content</ToolbarLink>
-                    <ToolbarLink to="/login">login</ToolbarLink>
                     <ToolbarLink to="/fave">fave</ToolbarLink>
                 </nav>
                 <Route path="/content" component={ Filters }/>
-
-
             </header>
         );
     };

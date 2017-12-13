@@ -1,3 +1,4 @@
+import {store} from '../App'
 export const load = (state = {}, action) => {
     switch(action.type) {
         case 'LOAD_DATA':
@@ -31,9 +32,18 @@ export const filter = (state = { name: 'ALL'}, action) => {
 }
 
 export const next = (state = { offset: 0}, action) => {
+    console.log(action);
     switch(action.type) {
         case 'CONTENT/NEXT':
             return action.offset;
+        default:
+            return state;
+    }
+}
+export const details = (state = {}, action) => {
+    switch(action.type) {
+        case 'DETAILS/GETDATA':
+            return store.getState();
         default:
             return state;
     }

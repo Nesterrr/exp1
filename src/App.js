@@ -5,14 +5,16 @@ import { Provider } from 'react-redux'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import initStore from './ducks/store'
-import rootSaga from './ducks/index'
+
 
 import Header from './components/header/Header'
 import Content from './components/content/Content'
-import Login from './components/content/Login'
 import NotFound from './components/NotFound'
 import Main from './components/main/index'
+import Details from './components/content/Details'
+
+import initStore from './ducks/store'
+import rootSaga from './ducks/index'
 
 export const store = initStore()
 
@@ -21,23 +23,23 @@ store.runSaga(rootSaga)
 class App extends Component {
   render() {
       return (
-      <div className="App">
+        <div className="App">
             <Provider store = { store }>
                 <Router>
                     <div>
                         <Header />
                         <Switch>
                             <Route exact path='/' component = { Main }/>
-                            <Route exact path='/content' component={ Content } />
+                            <Route exact path='/content' render={ ()=><Content /> } />
                             <Route path='/content/filters/:filter' component={ Content } />
-                            <Route path='/login' component={ Login } />
                             <Route path='/fave/:filter' component={ Content } />
+                            <Route path='/content/:id' render={ ()=><Details data={ store }/> } />
                             <Route component={ NotFound } />
                         </Switch>
-                </div>
+                    </div>
                 </Router>
             </Provider>
-      </div>
+        </div>
     )
   }
 }

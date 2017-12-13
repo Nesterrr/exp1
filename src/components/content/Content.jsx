@@ -1,9 +1,10 @@
 import React from 'react';
 import Article from './Article';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 let offset = 0;
+let flag = false;
 
 class Content extends React.Component {
     constructor() {
@@ -12,9 +13,11 @@ class Content extends React.Component {
         this.filter = this.filter.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
-
     componentWillMount() {
-        this.props.action();
+        if(!flag) {
+            this.props.action();
+        }
+        flag = true;
     }
 
     filter(match) {
@@ -23,6 +26,7 @@ class Content extends React.Component {
         switch(match.url) {
             case '/content/filters/month':
                 return this.data.filter((item) => {
+                   // item.p
                     return item.byline;
                 });
 
@@ -40,21 +44,19 @@ class Content extends React.Component {
     }
     handleClick() {
         offset = offset + 20;
+        console.log(offset);
         this.props.actionNext(offset);
     }
     render() {
         return (
             <section className="mdc-card">
-                { this.filter(this.props.match).map((item, key) => <Article key={key} {...item}/>) }
+                { this.filter(this.props.match).map((item, key) => <Article key={ key } id={ key } {...item}/>) }
                 <button type="button" onClick={ this.handleClick }>Next</button>
             </section>
         );
     };
 }
 
-Content.propTypes ={
-    myState: PropTypes.array.isRequired
-}
 
 function mapStateToProps (state) {
     return { myState: state.toStore, filterState: state.filter.name };
@@ -67,4 +69,4 @@ const actionNext = () => {
     return { type: 'CONTENT/NEXT', offset: offset }
 }
 
-export default connect(mapStateToProps, { action, actionNext })(Content);
+export default connect(mapStateToProps, { action, actionNext })(withRouter(Content));

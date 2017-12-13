@@ -1,29 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+//import PropTypes from 'prop-types'
 
-function Article(props) {
+function Article({ byline, multimedia, display_title, id }) {
 
-    let src,
-     text = props.byline,
-        title = props.display_title;
-    if(props.multimedia) {
-             src = props.multimedia.src;
-        } else {
-            src = 'my_null';
-        }
+    const src = multimedia.src || '';
     return (
         <article className="mdc-card__primary">
-            <h2 className="mdc-card__title mdc-card__title--large">{ title }</h2>
+            <h2 className="mdc-card__title mdc-card__title--large">{ display_title }</h2>
             <img src={ src } alt="here is stuff"/>
-            <p>{ text }</p>
+            <p>{ byline }</p>
+            <Link to={ "/content/" + id }>Open</Link>
         </article>
     );
-}
 
+}
+/*
 Article.PropTypes = {
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-}
-
+}*/
+// Передать параметры через LINK ?
 export default Article;

@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga';
+import { takeEvery } from 'redux-saga'
 import {call, put, select} from 'redux-saga/effects'
 
 
@@ -23,7 +23,7 @@ function getData(a) {
     });
 }
 function* loadData(a) {
-    const data = yield call(getData,a);
+    const data = yield call(getData, a);
 
     yield put({type: 'TO_STORE',data: data});
 
